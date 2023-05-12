@@ -20,10 +20,16 @@ public:
 		this->apartment_number = apartment_number;								// инициализация
 	}
 
-	// address*    // динамический массив для хранения всех адресов, экземпляров класса 
+	Address()																				//это конструктор без параметров
+	{
+		house_number = apartment_number = 0;
+	}
 
-	//std::string get_output_address1() // метод, который собирает строку для вывода в файл, метод будет возвращать значение типа std::string
 	
+	std::string get_output_address() // метод, который собирает строку для вывода в файл, метод будет возвращать значение типа std::string
+	{
+		return city + ", " + street + ", " + std::to_string(house_number) + ", " + std::to_string(apartment_number);
+	}
 };
 
 
@@ -38,45 +44,36 @@ int main() {
 
 	fin >> s;										// считали 1-е слово из файла и записали его в перем. s
 
-	int n = std::stoi(s);							// преобразовали значение типа std::string в число
+	const int n = std::stoi(s);						// преобразовали значение типа std::string в число
 	std::cout << n << std::endl;
 	fout << n << std::endl;
 
-	//std::string s1;
-	//fin >> s1;
-	////std::cout << s1 << ", ";
-	//std::string s2;
-	//fin >> s2;
-	////std::cout << s2 << ", ";
-	//std::string s3;
-	//fin >> s3;
-	//int n1 = std::stoi(s3);
-	////std::cout << n1 << ", ";
-	//std::string s4;
-	//fin >> s4;
-	//int n2 = std::stoi(s4);
-	////std::cout << n2 << std::endl;
+	std::string s1;
+	std::string s2;
+	std::string s3;
+	std::string s4;
 
-
-	/*Address address1 = { s1, s2, n1, n2 };
-	std::cout << address1.get_output_address();*/
-
-
-	for (int x = 0; x < n; x++)
+	fin >> s1;
+	fin >> s2;
+	fin >> s3;
+	int n1 = std::stoi(s3);
+	fin >> s4;
+	int n2 = std::stoi(s4);
+	
+	Address address = { s1, s2, n1, n2 };
+	std::cout << address.get_output_address();
+	
+	//Address* address = new Address[n];
+	
+	for (int i = 0; i < n; i++)
 	{
-		std::string* ad = new std::string[3];			 // создаем динамический массив
-		for (int i = 0; i < 3; i++)
-		{
-			fin >> s;									 // считываем название города, название улицы, номер дома
-			std::cout << s << ", ";
-		}
-		fin >> s;									     // считываем номер квартиры
-		std::cout << s << std::endl;
-		delete[] ad;									 // удаляем динамический массив
+		//std::cout << address[i];
+		std::cout << std::endl;
 	}
 
-fin.close();											 // закрываем файл "in.txt"
-fout.close();											 // закрываем файл "out.txt"
+
+	fin.close();											 // закрываем файл "in.txt"
+	fout.close();											 // закрываем файл "out.txt"
 }
 
 
