@@ -14,10 +14,10 @@ public:
 
 	Address(std::string city, std::string street, int house_number, int apartment_number)	//это конструктор с параметрами
 	{
-		this->city = city;													    // инициализация
-		this->street = street;													// инициализация
-		this->house_number = house_number;										// инициализация
-		this->apartment_number = apartment_number;								// инициализация
+		this->city = city;																	// инициализация
+		this->street = street;																// инициализация
+		this->house_number = house_number;													// инициализация
+		this->apartment_number = apartment_number;											// инициализация
 	}
 
 	Address()																				//это конструктор без параметров
@@ -26,7 +26,7 @@ public:
 		street = " ";
 		house_number = apartment_number = 0;
 	}
-	
+
 	std::string get_output_address() // метод, который собирает строку для вывода в файл, метод будет возвращать значение типа std::string
 	{
 		return city + ", " + street + ", " + std::to_string(house_number) + ", " + std::to_string(apartment_number);
@@ -59,20 +59,19 @@ int main() {
 	int n1 = std::stoi(s3);
 	fin >> s4;
 	int n2 = std::stoi(s4);
-	
-	Address address = { s1, s2, n1, n2 };
-	std::cout << address.get_output_address();
-	
+
 	Address* address = new Address[n];
-	
+
 	for (int i = 0; i < n; i++)
 	{
-		std::cout << address[i];
+		address[i] = Address(s1, s2, n1, n2);
+		std::cout << address[i].get_output_address();
 		std::cout << std::endl;
 	}
-
+	
 	fin.close();											 // закрываем файл "in.txt"
 	fout.close();											 // закрываем файл "out.txt"
+	delete[]address;
 }
 
 
