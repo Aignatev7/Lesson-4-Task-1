@@ -45,7 +45,6 @@ int main() {
 	fin >> s;										// считали 1-е слово из файла и записали его в перем. s
 
 	const int n = std::stoi(s);						// преобразовали значение типа std::string в число
-	std::cout << n << std::endl;
 	fout << n << std::endl;
 
 	std::string s1;
@@ -53,20 +52,22 @@ int main() {
 	std::string s3;
 	std::string s4;
 
-	fin >> s1;
-	fin >> s2;
-	fin >> s3;
-	int n1 = std::stoi(s3);
-	fin >> s4;
-	int n2 = std::stoi(s4);
-
 	Address* address = new Address[n];
 
 	for (int i = 0; i < n; i++)
 	{
+		fin >> s1;
+		fin >> s2;
+		fin >> s3;
+		int n1 = std::stoi(s3);
+		fin >> s4;
+		int n2 = std::stoi(s4);
 		address[i] = Address(s1, s2, n1, n2);
-		std::cout << address[i].get_output_address();
-		std::cout << std::endl;
+	}
+
+	for (int i = n-1; i >= 0; i--)
+	{
+		fout << address[i].get_output_address() << std::endl;
 	}
 	
 	fin.close();											 // закрываем файл "in.txt"
